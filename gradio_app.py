@@ -1,3 +1,4 @@
+import platform
 import gradio as gr
 import numpy as np
 import torch
@@ -61,7 +62,7 @@ reg_sizes = {}
 creg_maps = {}
 sreg_maps = {}
 text_cond = 0
-device="cuda"
+device="mps": if platform.system() == "Darwin" else "cuda"
 
 pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5").to(device)
 pipe.safety_checker = lambda images, clip_input: (images, False)
