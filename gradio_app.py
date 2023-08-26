@@ -63,10 +63,7 @@ sreg_maps = {}
 text_cond = 0
 device="cuda"
 
-pipe = StableDiffusionPipeline.from_pretrained(
-  "runwayml/stable-diffusion-v1-5",
-  cache_dir='./models/diffusers/',
-  use_auth_token=HF_TOKEN).to(device)
+pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5").to(device)
 pipe.safety_checker = lambda images, clip_input: (images, False)
 pipe.scheduler = DDIMScheduler.from_config(pipe.scheduler.config)
 pipe.scheduler.set_timesteps(50)
